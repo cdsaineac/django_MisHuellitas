@@ -19,5 +19,10 @@ urlpatterns=[
     path('ventas/nuevaventa/', login_required(VentaCreateView.as_view()), name='venta_new'),
     path('ventas/<int:pk>/edit/', login_required(VentaUpdateView.as_view()), name ='venta_edit'), 
     path('ventas/<int:pk>/', login_required(VentaDetailView.as_view()), name ='venta_detail'), 
-    path('ventas/<int:pk>/delete/ ', login_required(VentaDeleteView.as_view()), name ='venta_delete')
+    path('ventas/<int:pk>/delete/ ', login_required(VentaDeleteView.as_view()), name ='venta_delete'),
+    path('compras/', login_required(CompraListView.as_view()), name='compra_list'),
+    path('compras/nuevacompra/', login_required(CompraCreateView.as_view()), name='compra_new'),
+    path('compras/<int:pk>/edit/', login_required(CompraUpdateView.as_view()), name ='compra_edit'), 
+    path('compras/<int:pk>/', login_required(CompraDetailView.as_view()), name ='compra_detail'), 
+    path('compras/<int:pk>/delete/ ', login_required(CompraDeleteView.as_view()), name ='compra_delete')
 ]

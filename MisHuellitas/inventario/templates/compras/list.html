@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block title %}Ventas{% endblock title %}
+
+{% block content %}
+<div class='m-3'>
+    <div class='d-flex justify-content-between'>
+        <h2> Ventas Mis Huellitas </h2>
+        <a href ='{% url 'venta_new' %}' ><button type='button' class='btn btn-info'>Agregar nueva venta</button></a>
+    </div>
+</div>
+</br>
+<table class='table table-striped' 
+    data-toggle='table'
+    data-pagination = 'true'
+    data-sort-name='fecha'
+    data-sort-order='desc'
+    data-thead-classes = 'table-dark'>
+    <thead>
+      <tr>
+        <th scope='col' data-sortable='true'>Producto</th>
+        <th scope='col' data-sortable='true'>Cantidad</th>
+        <th scope='col' data-sortable='true'>Descuento</th>
+        <th scope='col' data-sortable='true'>Precio Total</th>
+        <th scope='col' data-sortable='true' data-field='fecha'>Fecha</th>
+        <th scope='col' data-sortable='true'>Vendedor</th>
+        <th scope='col'>Opciones</th>
+      </tr>
+    </thead>
+    <tbody>       
+        {% for venta in object_list %}
+        <tr>
+            <th scope='row'> 
+                <a href ='{% url 'venta_detail' venta.pk %}' >
+                        {{ venta.producto }}
+                </a>
+            </th>
+            <td>{{ venta.cantidad_o_precio }}</td>
+            <td>${{ venta.descuento }}</td>
+            <td>${{ venta.precio_final }}</td>
+            <td>{{ venta.fecha | date:'Y-m-d H:i' }}</td>
+            <td>{{ venta.vendedor }}</td>
+            <td>
+                <a href ='{% url 'venta_edit' venta.pk %}' ><button type='button' class='btn btn-secondary'>Editar</button></a>
+                <a href ='{% url 'venta_delete' venta.pk %}' ><button type='button' class='btn btn-danger'>Borrar</button></a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock content %}

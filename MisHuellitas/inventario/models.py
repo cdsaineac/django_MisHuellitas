@@ -63,9 +63,14 @@ class Venta(models.Model):
 
     def save(self, *args, **kwargs):
         self.cantidad_o_precio = self.getCantidad()
-        self.reducirInventarioProducto(self.producto.codigoBarras)
         self.precio_base = self.getPrecioBase()
         self.precio_final = self.getPrecioTotal()
+        if self.pk is None:
+            self.reducirInventarioProducto(self.producto.codigoBarras)
+        else:
+            venta_anterior = Venta.objects.get(id= self.id)
+            self.cantidad_o_precio = self.cantidad_o_precio - venta_anterior.cantidad_o_precio 
+            self.reducirInventarioProducto(self.producto.codigoBarras)
         super(Venta, self).save(*args, **kwargs)
     
     def get_absolute_url (self ):
@@ -76,6 +81,23 @@ class Compra(models.Model):
     fecha = models.DateField(auto_now=True)
     comprador = models.ForeignKey("auth.User",on_delete=models.PROTECT)
     producto = models.ForeignKey("Producto",on_delete=models.PROTECT)    
-    cantidad = models.PositiveIntegerField(default=0) 
+    cantidad = models.FloatField(default=0) 
     precio =  models.FloatField(default=0.0)
+    comentario = models.TextField(default="Sin Comentarios")
     
+    def aumentarInventarioProducto(self, producto):
+        producto = Producto.objects.get(codigoBarras = producto)
+        producto.cantidad = producto.cantidad + self.cantidad
+        producto.save()
+
+    def save(self, *args, **kwargs):
+        if self.pk is None:
+            self.aumentarInventarioProducto(self.producto.codigoBarras)
+        else:
+            compra_anterior = Compra.objects.get(id= self.id)
+            self.cantidad = self.cantidad - compra_anterior.cantidad 
+            self.aumentarInventarioProducto(self.producto.codigoBarras)
+        super(Compra, self).save(*args, **kwargs)
+    
+    def get_absolute_url (self ):
+        return reverse( 'compra_detail', args =[str(self.id)])

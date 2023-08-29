@@ -8,6 +8,13 @@ class VentaForm(ModelForm):
         widgets={
             "producto": NumberInput(), 
         }
-        
+    
+class CompraForm(ModelForm):
+    class Meta:
+        model = Venta
+        exclude = ['comprador']
+        widgets={
+            "producto": NumberInput(), 
+        }
     
     

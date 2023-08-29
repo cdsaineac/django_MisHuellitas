@@ -69,7 +69,6 @@ class VentaCreateView(CreateView):
     def form_valid(self, form):
         form.instance.vendedor = self.request.user
         return super(VentaCreateView, self).form_valid(form)
-
     
 class VentaDetailView(DetailView):
     model = Venta
@@ -84,3 +83,30 @@ class VentaDeleteView(DeleteView):
     model = Venta
     template_name = 'ventas/delete.html'
     success_url = reverse_lazy('venta_list')
+
+class CompraListView (ListView):
+    model = Compra
+    template_name = 'compras/list.html'
+
+class CompraCreateView(CreateView):
+    model = Compra
+    form_class = CompraForm
+    template_name = 'compras/new.html'
+    
+    def form_valid(self, form):
+        form.instance.vendedor = self.request.user
+        return super(CompraCreateView, self).form_valid(form)
+    
+class CompraDetailView(DetailView):
+    model = Compra
+    template_name = 'compras/detail.html'
+
+class CompraUpdateView(UpdateView):
+    model = Compra
+    fields = ('comprador','producto','cantidad','precio','comentario')
+    template_name = 'compras/edit.html'
+
+class CompraDeleteView(DeleteView):
+    model = Compra
+    template_name = 'compras/delete.html'
+    success_url = reverse_lazy('compra_list')

@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>Borrar Compra</h1>
+    <form action="" method="post" >{% csrf_token %}
+        <p >Está seguro de borrar $"{{ compra.precio }}" de {{ compra.producto }}?</p>
+        <button class= "btn btn-danger ml-2" type ="submit" >Confirmar</button >
+    </form >
+{% endblock content %}
