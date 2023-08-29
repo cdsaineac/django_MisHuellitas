@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %}Categorias{% endblock title %}
+{% block content %}
+<div class='m-3'>
+    <div class='d-flex justify-content-between'>
+        <h2> Categorias Mis Huellitas </h2>
+        <a href ='{% url 'categoria_new' %}' ><button type='button' class='btn btn-info'>Agregar nueva categoria</button></a>
+    </div>
+</div>
+</br>
+<table class='table table-striped' 
+    data-toggle='table'
+    data-pagination = 'true'
+    data-thead-classes = 'table-dark'>
+    <thead>
+      <tr>
+        <th scope='col' data-sortable='true'>Nombre</th>
+        <th scope='col'>Opciones</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for categoria in object_list %}
+        <tr>
+            <th scope='row'>{{ categoria.nombre }}</th>
+            <td>
+                <a href ='{% url 'categoria_edit' categoria.pk %}' ><button type='button' class='btn btn-secondary'>Editar</button></a>
+                <a href ='{% url 'categoria_delete' categoria.pk %}' ><button type='button' class='btn btn-danger'>Borrar</button></a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock content %}

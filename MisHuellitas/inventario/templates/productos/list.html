@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block title %}Productos{% endblock title %}
+{% block content %}
+<div class="m-3">
+    <div class="d-flex justify-content-between">
+        <h2> Productos Mis Huellitas </h2>
+        <a href ="{% url 'producto_new' %}" ><button type="button" class="btn btn-info">Agregar nuevo producto</button></a>
+    </div>
+</div>
+</br>
+<table
+    class="table table-striped"
+    data-toggle="table"
+    data-search="true" 
+    data-pagination="true"
+    data-thead-classes = 'table-dark'>
+    <thead>
+      <tr>
+        <th scope="col" data-sortable="true">Codigo de barras</th>
+        <th scope="col" data-sortable="true">Nombre</th>
+        <th scope="col" data-sortable="true">Cantidad</th>
+        <th scope="col" data-sortable="true">Precio</th>
+        <th scope="col" data-sortable="true">Categoria</th>
+        <th scope="col">Opciones</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for producto in object_list %}
+        <tr>
+            <th scope="row">
+                <a href ="{% url 'producto_detail' producto.pk %}" >
+                    {{ producto.codigoBarras }}
+                </a>
+            </th>
+            <td>{{ producto.nombre }}</td>
+            <td>{{ producto.cantidad }}</td>
+            <td>${{ producto.precio }}</td>
+            <td>{{ producto.categoria }}</td>
+            <td>
+                <a href ="{% url 'producto_edit' producto.pk %}" ><button type="button" class="btn btn-secondary">Editar</button></a>
+                <a href ="{% url 'producto_delete' producto.pk %}" ><button type="button" class="btn btn-danger">Borrar</button></a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock content %}

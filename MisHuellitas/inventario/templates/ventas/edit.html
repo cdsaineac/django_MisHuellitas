@@ -1,0 +1,22 @@
+{% extends 'base form.html' %}
+{% block form %}
+    <form method="post">
+    {% csrf_token %}
+    <div class="d-flex align-items-center mb-3 pb-1">
+        <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
+        <span class="h1 fw-bold mb-0">Editar Venta</span>
+    </div>
+    {% for field in form %}
+        <div class="fieldWrapper">
+            {{ field.errors }}
+            <h6>{{ field.label_tag }} {{ field }}</h6> 
+            {% if field.help_text %}
+            <p class="help">{{ field.help_text|safe }}</p>
+            {% endif %}
+        </div>
+    {% endfor %}
+    <div class="pt-1 mb-4">
+        <button class="btn btn-dark btn-lg btn-block" type="submit">Editar Venta</button>
+    </div>
+    </form>
+{% endblock form %}

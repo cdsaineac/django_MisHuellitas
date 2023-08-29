@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="row g-0">
+        <div class="col-md-6 col-lg-5 d-none d-md-block">
+        <img src="https://image.winudf.com/v2/image1/Y29tLmphc29uYmFyYS5hbmltYWxzd2FsbHBhcGVyX3NjcmVlbl8wXzE1NjkwMTc0NDhfMDQ4/screen-0.webp?fakeurl=1&type=.webp"
+            alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;" />
+        </div>
+        <div class="col-md-6 col-lg-7 d-flex align-items-center">
+        <div class="card-body p-4 p-lg-5 text-black">
+            {% block form %}
+            {% endblock form %}
+        </div>
+        </div>
+    </div>
+{% endblock content %}
