@@ -94,7 +94,7 @@ class CompraCreateView(CreateView):
     template_name = 'compras/new.html'
     
     def form_valid(self, form):
-        form.instance.vendedor = self.request.user
+        form.instance.comprador = self.request.user
         return super(CompraCreateView, self).form_valid(form)
     
 class CompraDetailView(DetailView):
