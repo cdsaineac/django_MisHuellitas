@@ -80,7 +80,7 @@ class Venta(models.Model):
 
 class Compra(models.Model):
     id = models.AutoField(primary_key=True)
-    fecha = models.DateField(auto_now=True)
+    fecha = models.DateTimeField(auto_now=True)
     comprador = models.ForeignKey("auth.User",on_delete=models.PROTECT)
     producto = models.ForeignKey("Producto",on_delete=models.PROTECT)    
     cantidad = models.FloatField(default=0) 
