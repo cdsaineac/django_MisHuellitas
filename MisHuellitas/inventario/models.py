@@ -68,9 +68,11 @@ class Venta(models.Model):
         if self.pk is None:
             self.reducirInventarioProducto(self.producto.codigoBarras)
         else:
+            nueva_cantidad = self.cantidad_o_precio
             venta_anterior = Venta.objects.get(id= self.id)
-            self.cantidad_o_precio = self.cantidad_o_precio - venta_anterior.cantidad_o_precio 
+            self.cantidad_o_precio = nueva_cantidad - venta_anterior.cantidad_o_precio 
             self.reducirInventarioProducto(self.producto.codigoBarras)
+            self.cantidad_o_precio = nueva_cantidad
         super(Venta, self).save(*args, **kwargs)
     
     def get_absolute_url (self ):
@@ -94,9 +96,11 @@ class Compra(models.Model):
         if self.pk is None:
             self.aumentarInventarioProducto(self.producto.codigoBarras)
         else:
+            nueva_cantidad = self.cantidad
             compra_anterior = Compra.objects.get(id= self.id)
-            self.cantidad = self.cantidad - compra_anterior.cantidad 
+            self.cantidad = nueva_cantidad - compra_anterior.cantidad 
             self.aumentarInventarioProducto(self.producto.codigoBarras)
+            self.cantidad = nueva_cantidad
         super(Compra, self).save(*args, **kwargs)
     
     def get_absolute_url (self ):

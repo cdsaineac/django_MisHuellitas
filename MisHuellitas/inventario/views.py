@@ -76,7 +76,7 @@ class VentaDetailView(DetailView):
 
 class VentaUpdateView(UpdateView):
     model = Venta
-    fields = ('vendedor','producto','cantidad_o_precio','descuento','comentario')
+    fields = ('vendedor','cantidad_o_precio','descuento','comentario')
     template_name = 'ventas/edit.html'
 
 class VentaDeleteView(DeleteView):
@@ -103,7 +103,7 @@ class CompraDetailView(DetailView):
 
 class CompraUpdateView(UpdateView):
     model = Compra
-    fields = ('comprador','producto','cantidad','precio','comentario')
+    fields = ('comprador','cantidad','precio','comentario')
     template_name = 'compras/edit.html'
 
 class CompraDeleteView(DeleteView):
