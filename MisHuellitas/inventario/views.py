@@ -41,7 +41,7 @@ class ProductoListView (ListView):
 class ProductoCreateView(CreateView):
     model = Producto
     template_name = 'productos/new.html'
-    fields = ('codigoBarras','nombre','cantidad','precio','categoria','activo')
+    fields = ('codigoBarras','nombre','cantidad','precio','categoria')
 
 class ProductoDetailView(DetailView):
     model = Producto
@@ -49,7 +49,7 @@ class ProductoDetailView(DetailView):
 
 class ProductoUpdateView(UpdateView):
     model = Producto
-    fields = ('codigoBarras','nombre','cantidad','precio','categoria','activo')
+    fields = ('codigoBarras','nombre','cantidad','precio','categoria')
     template_name = 'productos/edit.html'
 
 class ProductoDeleteView(DeleteView):
