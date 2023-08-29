@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
-{% block title %}Ventas{% endblock title %}
+{% block title %}Compras{% endblock title %}
 
 {% block content %}
 <div class='m-3'>
     <div class='d-flex justify-content-between'>
-        <h2> Ventas Mis Huellitas </h2>
-        <a href ='{% url 'venta_new' %}' ><button type='button' class='btn btn-info'>Agregar nueva venta</button></a>
+        <h2> Compras Mis Huellitas </h2>
+        <a href ='{% url 'compra_new' %}' ><button type='button' class='btn btn-info'>Agregar nueva compra</button></a>
     </div>
 </div>
 </br>
@@ -19,29 +19,27 @@
       <tr>
         <th scope='col' data-sortable='true'>Producto</th>
         <th scope='col' data-sortable='true'>Cantidad</th>
-        <th scope='col' data-sortable='true'>Descuento</th>
-        <th scope='col' data-sortable='true'>Precio Total</th>
+        <th scope='col' data-sortable='true'>Precio</th>
         <th scope='col' data-sortable='true' data-field='fecha'>Fecha</th>
-        <th scope='col' data-sortable='true'>Vendedor</th>
+        <th scope='col' data-sortable='true'>Comprador</th>
         <th scope='col'>Opciones</th>
       </tr>
     </thead>
     <tbody>       
-        {% for venta in object_list %}
+        {% for compra in object_list %}
         <tr>
             <th scope='row'> 
-                <a href ='{% url 'venta_detail' venta.pk %}' >
-                        {{ venta.producto }}
+                <a href ='{% url 'compra_detail' compra.pk %}' >
+                        {{ compra.producto }}
                 </a>
             </th>
-            <td>{{ venta.cantidad_o_precio }}</td>
-            <td>${{ venta.descuento }}</td>
-            <td>${{ venta.precio_final }}</td>
-            <td>{{ venta.fecha | date:'Y-m-d H:i' }}</td>
-            <td>{{ venta.vendedor }}</td>
+            <td>{{ compra.cantidad }}</td>
+            <td>${{ compra.precio }}</td>
+            <td>{{ compra.fecha | date:'Y-m-d H:i' }}</td>
+            <td>{{ compra.comprador }}</td>
             <td>
-                <a href ='{% url 'venta_edit' venta.pk %}' ><button type='button' class='btn btn-secondary'>Editar</button></a>
-                <a href ='{% url 'venta_delete' venta.pk %}' ><button type='button' class='btn btn-danger'>Borrar</button></a>
+                <a href ='{% url 'compra_edit' compra.pk %}' ><button type='button' class='btn btn-secondary'>Editar</button></a>
+                <a href ='{% url 'compra_delete' compra.pk %}' ><button type='button' class='btn btn-danger'>Borrar</button></a>
             </td>
         </tr>
         {% endfor %}
