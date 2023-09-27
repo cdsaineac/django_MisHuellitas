@@ -58,8 +58,11 @@ class Venta(models.Model):
     
     def reducirInventarioProducto(self, producto):
         producto = Producto.objects.get(codigoBarras = producto)
-        producto.cantidad = producto.cantidad - self.cantidad_o_precio
-        producto.save()
+        if producto.cantidad - self.cantidad_o_precio >= 0:
+            producto.cantidad = producto.cantidad - self.cantidad_o_precio
+            producto.save()
+        else:
+            raise ValueError('No hay suficiente inventario')
 
     def save(self, *args, **kwargs):
         self.cantidad_o_precio = self.getCantidad()

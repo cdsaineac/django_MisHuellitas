@@ -4,7 +4,9 @@
 {% block content %}
 <div class='m-3'>
     <div class='d-flex justify-content-between'>
-        <h2> Compras Mis Huellitas </h2>
+        <div class="card-header">
+            <h2>Compras</h2>
+        </div>
         <a href ='{% url 'compra_new' %}' ><button type='button' class='btn btn-info'>Agregar nueva compra</button></a>
     </div>
 </div>
@@ -14,7 +16,9 @@
     data-pagination = 'true'
     data-sort-name='fecha'
     data-sort-order='desc'
-    data-thead-classes = 'table-dark'>
+    data-thead-classes = 'table-dark'
+    data-locale = 'es-ES'
+    data-show-export="true">
     <thead>
       <tr>
         <th scope='col' data-sortable='true'>Producto</th>

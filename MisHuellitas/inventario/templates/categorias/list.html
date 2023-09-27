@@ -3,7 +3,9 @@
 {% block content %}
 <div class='m-3'>
     <div class='d-flex justify-content-between'>
-        <h2> Categorias Mis Huellitas </h2>
+        <div class="card-header">
+                <h2>Categorias</h2>
+        </div>
         <a href ='{% url 'categoria_new' %}' ><button type='button' class='btn btn-info'>Agregar nueva categoria</button></a>
     </div>
 </div>
@@ -11,7 +13,9 @@
 <table class='table table-striped' 
     data-toggle='table'
     data-pagination = 'true'
-    data-thead-classes = 'table-dark'>
+    data-thead-classes = 'table-dark'
+    data-locale = 'es-ES'
+    data-show-export="true">
     <thead>
       <tr>
         <th scope='col' data-sortable='true'>Nombre</th>

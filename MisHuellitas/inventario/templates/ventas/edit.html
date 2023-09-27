@@ -15,6 +15,13 @@
             {% endif %}
         </div>
     {% endfor %}
+
+    {% if form.non_field_errors %}
+    <div class="alert alert-dismissible alert-danger">
+        <strong>Error!</strong>{{form.non_field_errors}}
+    </div>
+    {% endif %}
+
     <div class="pt-1 mb-4">
         <button class="btn btn-dark btn-lg btn-block" type="submit">Editar Venta</button>
     </div>

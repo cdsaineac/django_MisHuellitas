@@ -68,6 +68,7 @@ class VentaCreateView(CreateView):
     
     def form_valid(self, form):
         form.instance.vendedor = self.request.user
+        form.clean()
         return super(VentaCreateView, self).form_valid(form)
     
 class VentaDetailView(DetailView):
@@ -76,8 +77,13 @@ class VentaDetailView(DetailView):
 
 class VentaUpdateView(UpdateView):
     model = Venta
-    fields = ('vendedor','cantidad_o_precio','descuento','comentario')
     template_name = 'ventas/edit.html'
+    form_class = VentaFormUpdate
+
+    def form_valid(self, form):
+        form.instance.vendedor = self.request.user
+        form.clean()
+        return super(VentaUpdateView, self).form_valid(form)
 
 class VentaDeleteView(DeleteView):
     model = Venta
@@ -95,6 +101,7 @@ class CompraCreateView(CreateView):
     
     def form_valid(self, form):
         form.instance.comprador = self.request.user
+        form.clean()
         return super(CompraCreateView, self).form_valid(form)
     
 class CompraDetailView(DetailView):
@@ -105,6 +112,10 @@ class CompraUpdateView(UpdateView):
     model = Compra
     fields = ('comprador','cantidad','precio','comentario')
     template_name = 'compras/edit.html'
+
+    def form_valid(self, form):
+        form.clean()
+        return super(CompraCreateView, self).form_valid(form)
 
 class CompraDeleteView(DeleteView):
     model = Compra

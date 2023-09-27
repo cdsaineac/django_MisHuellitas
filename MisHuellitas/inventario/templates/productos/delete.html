@@ -1,8 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
-    <h1>Borrar Producto</h1>
-    <form action="" method="post" >{% csrf_token %}
-        <p >Está seguro de borrar "{{ producto.nombre }}"?</p>
-        <button class= "btn btn-danger ml-2" type ="submit" >Confirmar</button >
-    </form >
+    {% if perms.inventario.delete_producto %}
+        <h1>Borrar Producto</h1>
+        <form action="" method="post" >{% csrf_token %}
+            <p >Está seguro de borrar "{{ producto.nombre }}"?</p>
+            <button class= "btn btn-danger ml-2" type ="submit" >Confirmar</button >
+        </form >
+    {% else %}
+        <p>No tiene permiso para borrar</p>
+    {% endif %}
 {% endblock content %}

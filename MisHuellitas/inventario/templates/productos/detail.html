@@ -1,10 +1,36 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="entry" >
-    <h2 >{{ object.id }}</h2 >
-    <p >{{ object.nombre }}</p>
-</div >
-<p><a href="{% url 'producto_edit' producto.pk %}" >Edit</a> |
-    <a href="{% url 'producto_delete' producto.pk %}" >Delete</a></p >
-<p>Volver a <a href ="{% url 'producto_list' %}" >listado de productos</a>.</p>
+
+
+<div class="container text-center">
+    <div class="col">
+        <div class="row">
+            <a href="https:/barcode.tec-it.com/en/?data={{ producto.pk }}"><h2> {{ object.nombre }} </h2></a>
+        </div>
+        <div class="row">
+            <ul class="list-group">
+                <li class="list-group-item"><h4>Cantidad actual en inventario:</h4><h6>{{object.cantidad}}</h6></li>
+                <li class="list-group-item"><h4>Precio por unidad:</h4> <h6>${{object.precio}}</h6></li>
+                <li class="list-group-item"><h4>Categoria:</h4><h6>{{object.categoria}}</h6></li>
+            </ul>
+        </div>
+        <div class="row">
+                <br>
+        </div>
+        <div class="row">
+            <div class="btn-group">
+                <a href="{% url 'producto_edit' producto.pk %}" class="btn btn-info">Editar</a>
+                <a href="{% url 'producto_delete' producto.pk %}" class="btn btn-danger">Borrar</a>
+            </div>
+        </div>
+        <div class="row">
+            <br>
+        </div>
+        <div class="row">
+            <div class="btn-group">
+                <a href ="{% url 'producto_list' %}" class="btn btn-info">Volver a listado de productos</a>
+            </div> 
+        </div>
+    </div>
+  </div>
 {% endblock content %}
