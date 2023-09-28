@@ -21,4 +21,5 @@ urlpatterns = [
     path( 'admin/', admin.site.urls),
     path( 'accounts/', include( 'django.contrib.auth.urls'), name ='admin'),
     path('', include("inventario.urls")),
+    path("reactpy/", include("reactpy_django.http.urls")),
 ]

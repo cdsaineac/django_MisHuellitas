@@ -12,27 +12,34 @@ class VentaForm(ModelForm):
     def clean(self):
         cleaned_data = super().clean()
         cantidad_vendida = cleaned_data.get("cantidad_o_precio")
+        descuento = cleaned_data.get("descuento")
 
         if cantidad_vendida < 0:
             raise ValidationError(
                 "La cantidad o precio no puede ser negativo"
             )
+        if descuento < 0:
+            raise ValidationError(
+                "El descuento no puede ser negativo"
+            )
 
 class VentaFormUpdate(ModelForm):
     class Meta:
         model = Venta
-        exclude = ['vendedor','precio_base','precio_final']
-        widgets={
-            "producto": NumberInput(), 
-        }
+        exclude = ['producto','vendedor','precio_base','precio_final']
 
     def clean(self):
         cleaned_data = super().clean()
         cantidad_vendida = cleaned_data.get("cantidad_o_precio")
+        descuento = cleaned_data.get("descuento")
 
         if cantidad_vendida < 0:
             raise ValidationError(
                 "La cantidad o precio no puede ser negativo"
+            )
+        if descuento < 0:
+            raise ValidationError(
+                "El descuento no puede ser negativo"
             )
 
     

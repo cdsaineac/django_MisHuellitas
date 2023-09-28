@@ -45,13 +45,19 @@ ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
 # Application definition
 
 INSTALLED_APPS = [
+    #CHANNELS
+    "daphne",
+    #DJANGO BASE APPS
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "inventario"
+    #REACTIVENESS
+    "reactpy_django",
+    #MY APP
+    "inventario",
 ]
 
 MIDDLEWARE = [
@@ -83,7 +89,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "MisHuellitas.wsgi.application"
-
+ASGI_APPLICATION = "MisHuellitas.asgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases

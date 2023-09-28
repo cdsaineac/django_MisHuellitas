@@ -1,21 +1,50 @@
 {% extends 'base form.html' %}
 {% block form %}
+    {% load reactpy %}
+    
     <form method="post">
     {% csrf_token %}
     <div class="d-flex align-items-center mb-3 pb-1">
         <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
         <span class="h1 fw-bold mb-0">Nueva Venta</span>
     </div>
-    {% for field in form %}
-        <div class="fieldWrapper">
-            {{ field.errors }}
-            <h6>{{ field.label_tag }} {{ field }}</h6> 
-            {% if field.help_text %}
-            <p class="help">{{ field.help_text|safe }}</p>
+    
+    <div class="fieldWrapper">
+        {{ form.producto.errors }}
+        <h6>{% component "inventario.components.show_producto"%}</h6> 
+        {% if form.producto.help_text %}
+        <p class="help">{{ form.producto.help_text|safe }}</p>
+        {% endif %}
+    </div>
+    <div class="fieldWrapper">
+        {{ form.tipo_venta.errors }}
+            <h6>{{ form.tipo_venta.label_tag }} {{ form.tipo_venta }}</h6> 
+            {% if form.tipo_venta.help_text %}
+            <p class="help">{{ form.tipo_venta.help_text|safe }}</p>
             {% endif %}
-        </div>
-    {% endfor %}
-
+    </div>
+    <div class="fieldWrapper">
+        {{ form.cantidad_o_precio.errors }}
+            <h6>{{ form.cantidad_o_precio.label_tag }} {{ form.cantidad_o_precio }}</h6> 
+            {% if form.cantidad_o_precio.help_text %}
+            <p class="help">{{ form.cantidad_o_precio.help_text|safe }}</p>
+            {% endif %}
+    </div>
+    <div class="fieldWrapper">
+        {{ form.descuento.errors }}
+            <h6>{{ form.descuento.label_tag }} {{ form.descuento }}</h6> 
+            {% if form.descuento.help_text %}
+            <p class="help">{{ form.descuento.help_text|safe }}</p>
+            {% endif %}
+    </div>
+    <div class="fieldWrapper">
+        {{ form.comentario.errors }}
+            <h6>{{ form.comentario.label_tag }} {{ form.comentario }}</h6> 
+            {% if form.comentario.help_text %}
+            <p class="help">{{ form.comentario.help_text|safe }}</p>
+            {% endif %}
+    </div>
+    
     {% if form.non_field_errors %}
         <div class="alert alert-dismissible alert-danger">
             <strong>Error!</strong>{{form.non_field_errors}}
